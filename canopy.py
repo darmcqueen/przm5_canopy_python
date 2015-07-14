@@ -28,4 +28,10 @@
 # 2nd Edition.
 #  - various bugs fixed; code cleaned.
 #   To calculates the overall vertical transport resistance
+#   
+#      If the Richardson number is "close" to Fuzzy, then
+ #the Richardson number is effectively equal to zero.
+ #
+Fuzzy = 0.003
+
 
