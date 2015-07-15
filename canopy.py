@@ -68,3 +68,13 @@ Pi = 3.14159265358979
  RiNum = g_grav / meanT * gradt / gradw**2
 
 
+# Computes the dimensionless height (zeta). See
+# Louis J. Thibodeaux. 1996. Environmental Chemodynamics:
+# Movement of Chemicals in Air, Water, and Soil. Wiley.
+# 2nd Edition, p 379-381.
+if RiNum < (-Fuzzy):
+	zeta = RiNum
+
+
+
+
