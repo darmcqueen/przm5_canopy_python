@@ -31,7 +31,40 @@
 #   
 #      If the Richardson number is "close" to Fuzzy, then
  #the Richardson number is effectively equal to zero.
- #
 Fuzzy = 0.003
+#
+Zero = 0.0
+#
+# To convert from 1/m to 1/cm :
+# value in 1/m is equivalent to (value * Im_to_Icm) 1/cm
+Im_to_Icm = 1.0e-02
+#
+#Temperature conversion: kelvin = Celsius + c2k
+c2k = 273.15
+#
+# Maximum value of the Richardson number
+Max_Richardson = 0.19
+#
+#  g_grav: acceleration due to gravity. Express in m/day^2
+# so that the Richardson number is dimensionless.
+# g_grav = 9.8 m/s^2
+# 		= 9.8 m/s^2 * (86400 s/day)**2 = 7.31567E+10 m/day^2
+g_grav = 9.8 * 86400.0**2
+Pi = 3.14159265358979
+
+#
+# Gradients
+ gradt = (utemp(2)-utemp(1)) / zch      # kelvin/meter
+ gradw = (uwind(2)-uwind(1)) / zch      # 1/day
+ meanT = Sum(utemp(1:2))/2 + c2k        # mean Temperature, kelvin
+
+# Computes Richardson number (RiNum) (dimensionless).
+# Louis J. Thibodeaux. 1996. Environmental Chemodynamics:
+# Movement of Chemicals in Air, Water, and Soil. Wiley.
+# 2nd Edition, p 373-375.
+#  Typically, -2.0 <= RiNum < 0.2, but for some of
+#  the PRZM scenarios RiNum was outside the nominal range.
+#  
+ RiNum = g_grav / meanT * gradt / gradw**2
 
 
