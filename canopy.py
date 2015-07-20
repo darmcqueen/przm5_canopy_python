@@ -32,6 +32,11 @@
 #      If the Richardson number is "close" to Fuzzy, then
  #the Richardson number is effectively equal to zero.
 Fuzzy = 0.003
+temp_ambient = 20 #celsius
+temp_soil_surface = 30 #celsius
+wind_speed = 100 # meters/day at top of canopy
+wind_speed_soil_surface = 50
+canopy_height = 1 #meters
 #
 Zero = 0.0
 #
@@ -54,9 +59,10 @@ Pi = 3.14159265358979
 
 #
 # Gradients
- gradt = (utemp(2)-utemp(1)) / zch      # kelvin/meter
- gradw = (uwind(2)-uwind(1)) / zch      # 1/day
- meanT = Sum(utemp(1:2))/2 + c2k        # mean Temperature, kelvin
+gradt = (temp_ambient-temp_soil_surface) / zch      # kelvin/meter
+gradw = (wind_speed - wind_speed_soil_surface) / zch      # 1/day
+meat_temp = ((temp_ambient+temp_soil_surface)/2 )/c2k  # mean Temperature, kelvin
+
 
 # Computes Richardson number (RiNum) (dimensionless).
 # Louis J. Thibodeaux. 1996. Environmental Chemodynamics:
@@ -64,15 +70,16 @@ Pi = 3.14159265358979
 # 2nd Edition, p 373-375.
 #  Typically, -2.0 <= RiNum < 0.2, but for some of
 #  the PRZM scenarios RiNum was outside the nominal range.
-#  
- RiNum = g_grav / meanT * gradt / gradw**2
+#
+print('hello')
+ #RiNum = g_grav / meanT * gradt / gradw**2
 
 
 # Computes the dimensionless height (zeta). See
 # Louis J. Thibodeaux. 1996. Environmental Chemodynamics:
 # Movement of Chemicals in Air, Water, and Soil. Wiley.
 # 2nd Edition, p 379-381.
-if RiNum < (-Fuzzy):zeta = RiNum
+#if RiNum < (-Fuzzy):zeta = RiNum
 
 
 
